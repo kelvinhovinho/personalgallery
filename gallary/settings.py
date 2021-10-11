@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'gallary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'photos',
     }
 }
 
