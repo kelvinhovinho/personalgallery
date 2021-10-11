@@ -13,11 +13,8 @@ class photos(models.Model):
     location = models.ForeignKey('location', on_delete=models.CASCADE)
     category = models.ForeignKey('category', on_delete=models.CASCADE)
 
-    class Meta:
-        '''
-        Class method to display images by date posted 
-        '''
-        ordering = ['posted_date']
-
-        def __str__(self):
-            return self.description 
+    def saveImage(self):
+        self.save()
+    
+    def deleteaimage(self):
+        self.delete()
