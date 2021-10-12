@@ -12,6 +12,7 @@ class photos(models.Model):
     image = CloudinaryField('image')
     Description = models.CharField(max_length=200)
     location = models.ForeignKey(location,on_delete=True)
+    category = models.ForeignKey(category,on_delete=True)
 
 
 class location(models.Model):
