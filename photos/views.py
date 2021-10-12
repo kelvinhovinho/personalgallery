@@ -5,8 +5,5 @@ from .models import photos
 def index(request):
     # importing photos and saving it in database
     photo = photos.objects.all()
-    
-
     #adding context
-    ctx = {'photo': photo}
-    return render(request, 'index.html', ctx)
+    return render(request, 'index.html', {"photo": photo})
