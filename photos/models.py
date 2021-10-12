@@ -22,3 +22,16 @@ class location(models.Model):
 
     def deleteLocation(self):
         self.deleteLocation()
+    
+class category(models.Model):
+    categoryName = models.CharField(max_length=30)
+
+    def saveCategory(self):
+        self.saveCategory()
+
+    @classmethod
+    def updateCategory(cls,id,value):
+        cls.objects.filter(id=id).update(image=value)
+
+    def __str__(self):
+        return self.categoryName
