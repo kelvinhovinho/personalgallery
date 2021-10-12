@@ -1,34 +1,34 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
-import datetime as dt
+from django.db.models.deletion import CASCADE
 
-from django.db.models.fields import CharField
 
-# Create your models here.
-class photos(models.Model):
-    #title field
-    title = models.CharField(max_length=100)
-    #image field
-    image = CloudinaryField('image')
-    Description = models.CharField(max_length=200)
-    location = models.ForeignKey(location,on_delete=True)
-    category = models.ForeignKey(category,on_delete=True)
 
 
 class location(models.Model):
-    locationName = CharField(max_length=30)
+    locationName = models.CharField(max_length=30, default=None)
 
     def saveLocation(self):
-        self.saveLocation()
+        self.save()
 
     def deleteLocation(self):
-        self.deleteLocation()
+        self.delete()
+
+    @classmethod
+    def updateLocation(cls,id,value):
+        cls.objects.filter(id=id).update(image = value)
     
+    def __str__(self):
+        return self.locationName
+
 class category(models.Model):
-    categoryName = models.CharField(max_length=30)
+    categoryName = models.CharField(max_length=30, default=None)
 
     def saveCategory(self):
-        self.saveCategory()
+        self.save()
+    def deleteCategory(self):
+        self.delete
+    
 
     @classmethod
     def updateCategory(cls,id,value):
@@ -36,3 +36,39 @@ class category(models.Model):
 
     def __str__(self):
         return self.categoryName
+
+
+# Create your models here.
+class photos(models.Model):
+    #title field
+    title = models.CharField(max_length=100)
+    #image field
+    image = CloudinaryField('image')
+    Description = models.CharField(max_length=200, default=None)
+    location = models.ForeignKey(location,on_delete=CASCADE,default=None)
+    category = models.ForeignKey(category,on_delete=CASCADE, default=None)
+
+
+    def saveImage(self):
+        self.save()
+
+    def deleteImage(self):
+        self.delete()
+    
+    @classmethod
+    def updateImage(cls,id,value):
+        cls.objects.filter(id=id).update(image=value)
+
+
+    @classmethod
+    def getImageById(cls,id):
+        image = cls.objects.filter(id=id).all()
+        return image
+
+
+    def __str__(self):
+        return self.title
+
+
+
+    
