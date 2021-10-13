@@ -8,7 +8,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name = 'index'),
-    re_path('location/(?p<location>\w+)',views.location,name = 'location'),
+    re_path('location/(?P<location>\w+)',views.location,name = 'location'),
+    # re_path('location/(?p<location>\w+)',views.location,name = 'location'),
     path('search/', views.search_results, name='search_results')
  ]
 
