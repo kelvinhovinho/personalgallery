@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 # import django heroku
+import os
+import django_on_heroku
+
 import cloudinary, cloudinary.uploader,cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +30,9 @@ SECRET_KEY = 'django-insecure-p8qckt##s(zaell&n5$!ws9zb@*%w-x!cz#gkd)z=@c#9@&v%t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['mygallary1.herokuapp.com']
 
 
 # Application definition
@@ -81,8 +86,10 @@ WSGI_APPLICATION = 'gallary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photos',
-        'USER':'postgres',
+        'NAME': 'd637gomvkpa6od',
+        'USER':'jvafscvmklvjeg',
+        'PASSWORD':'2d9979522075ad8f49519cc42bcf76a386983823bc2c390dea655245c5a9267f',
+        'HOST':'ec2-3-215-83-124.compute-1.amazonaws.com',
 
     }
 }
@@ -126,6 +133,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -133,9 +146,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# django_heroku.settings(locals())
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+django_on_heroku.settings(locals())
 
 
 #adding cloudinary config 
